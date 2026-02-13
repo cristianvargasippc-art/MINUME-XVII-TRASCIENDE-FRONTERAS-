@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Jiménez - Secretaría General Académica MINUME XVII ✈️🩵</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-claro: #33b5e5;
+            --azul-oscuro: #0d47a1;
+            --azul-medio: #1976d2;
+            --azul-royal: #1565c0;
+            --gris-oscuro: #1a1a1a;
+            --blanco: #ffffff;
+            --gris-claro: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ============================================
+           INTRO SCREEN - PANTALLA DE BIENVENIDA
+        ============================================ */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #0d47a1 0%, #1976d2 50%, #33b5e5 100%);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .intro-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .intro-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.85;
+        }
+
+        .intro-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.7) 0%, rgba(25, 118, 210, 0.6) 50%, rgba(51, 181, 229, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .intro-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            animation: fadeInScale 1.5s ease;
+            max-width: 90%;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .intro-logo-container {
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .intro-logo {
+            width: min(300px, 70vw);
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+        }
+
+        .intro-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 6vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            text-shadow: 3px 3px 20px rgba(0,0,0,0.6);
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+        }
+
+        .intro-subtitle {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            line-height: 1.4;
+        }
+
+        .intro-position {
+            font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+            font-weight: 600;
+            color: var(--azul-claro);
+            margin-bottom: 1.2rem;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+            line-height: 1.5;
+        }
+
+        .intro-hashtag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.6rem);
+            font-weight: 800;
+            color: var(--azul-claro);
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+            letter-spacing: 1.5px;
+            margin-bottom: 2rem;
+        }
+
+        .enter-button {
+            padding: 1.2rem 3rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            background: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enter-button::before {
+            content: '✈️';
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .enter-button:hover::before {
+            left: 18px;
+        }
+
+        .enter-button:active {
+            transform: scale(0.95);
+        }
+
+        .enter-button:hover {
+            background: var(--azul-claro);
+            color: white;
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.5);
+            padding-left: 4.5rem;
+        }
+
+        .skip-intro {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            z-index: 3;
+            font-weight: 600;
+        }
+
+        .skip-intro:hover {
+            opacity: 1;
+            transform: translateX(-5px);
+        }
+
+        /* BOTÓN DE SONIDO */
+        .sound-button {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 800;
+            color: white;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            border: 2px solid white;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+            animation: pulseSound 2s infinite;
+        }
+
+        @keyframes pulseSound {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 12px 40px rgba(255, 107, 107, 0.8);
+            }
+        }
+
+        .sound-button::before {
+            content: '✈️';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+            font-size: 1.5rem;
+            animation: planeMove 1.5s ease-in-out infinite;
+        }
+
+        @keyframes planeMove {
+            0%, 100% {
+                left: 12px;
+                top: 50%;
+            }
+            50% {
+                left: 8px;
+                top: 40%;
+            }
+        }
+
+        .sound-button:hover {
+            background: linear-gradient(135deg, #ff8e53, #ffbe0b);
+            transform: translateX(-50%) translateY(-12px) scale(1.08);
+            box-shadow: 0 16px 50px rgba(255, 190, 11, 0.8);
+            border-color: #ffbe0b;
+        }
+
+        .sound-button:hover::before {
+            animation: planeTakeoff 0.6s ease-out forwards;
+        }
+
+        @keyframes planeTakeoff {
+            0% {
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%) rotate(-45deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                left: -80px;
+                top: -80px;
+                transform: translateY(-50%) rotate(-45deg) scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        .sound-button:active {
+            transform: translateX(-50%) translateY(-8px) scale(1.03);
+        }
+
+        .sound-button.active {
+            background: linear-gradient(135deg, #51cf66, #37b24d);
+            border-color: #51cf66;
+            animation: none;
+        }
+
+        .sound-button.active::before {
+            animation: none;
+        }
+
+        .sound-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: 2px solid white;
+            border-radius: 40px;
+            transform: translate(-50%, -50%);
+            animation: soundWave 2s infinite;
+            opacity: 0;
+        }
+
+        @keyframes soundWave {
+            0% {
+                width: 100%;
+                height: 100%;
+                opacity: 0.8;
+            }
+            100% {
+                width: 140%;
+                height: 140%;
+                opacity: 0;
+            }
+        }
+
+        .sound-button:hover::after {
+            animation: soundWave 1s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .sound-button {
+                bottom: 85px;
+                font-size: 0.9rem;
+                padding: 0.9rem 2rem;
+            }
+
+            .sound-button::before {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ============================================
+           MAIN CONTENT
+        ============================================ */
+        .main-content {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .main-content.visible {
+            opacity: 1;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 71, 161, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 5%;
+            background: rgba(13, 71, 161, 1);
+            box-shadow: 0 4px 35px rgba(0,0,0,0.3);
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-nav-img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+        }
+
+        .navbar.scrolled .logo-nav-img {
+            height: 42px;
+        }
+
+        .logo-nav-img:hover {
+            transform: scale(1.08) rotate(2deg);
+        }
+
+        .logo-nav h2 {
+            color: var(--blanco);
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(0.7rem, 2vw, 0.95rem);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--azul-claro);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--azul-claro);
+        }
+
+        /* MENU HAMBURGUESA */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--blanco);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d47a1 0%, #1976d2 50%, #33b5e5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 2rem 2rem 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            animation: pulseHero 10s ease-in-out infinite;
+        }
+
+        @keyframes pulseHero {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .candidate-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .candidate-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.12;
+            filter: grayscale(10%);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--blanco);
+            z-index: 1;
+            max-width: 1100px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo-main {
+            width: min(280px, 65vw);
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 15px 40px rgba(0,0,0,0.5));
+            animation: floatHero 4s ease-in-out infinite;
+        }
+
+        @keyframes floatHero {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1.5deg); }
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.6rem, 5vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            text-shadow: 3px 3px 25px rgba(0,0,0,0.6);
+            line-height: 1.15;
+            letter-spacing: 1.5px;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+        }
+
+        .hero .candidate-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            color: white;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.7);
+        }
+
+        .hero .position-title {
+            font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--azul-claro);
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+            line-height: 1.5;
+        }
+
+        .hero .hashtag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--azul-claro);
+            font-weight: 900;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+            letter-spacing: 1.5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--blanco);
+            color: var(--azul-oscuro);
+            text-decoration: none;
+            font-weight: 900;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--azul-claro);
+            transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .cta-button:hover {
+            color: var(--blanco);
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .cta-button:active {
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        /* SECCIÓN CAUSA */
+        .causa-section {
+            padding: clamp(4rem, 8vw, 7rem) 5%;
+            background: var(--blanco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .causa-section::before {
+            content: '🩵';
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            font-size: clamp(6rem, 15vw, 10rem);
+            opacity: 0.05;
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 900;
+            color: var(--azul-oscuro);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            letter-spacing: 1.5px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(60px, 12vw, 120px);
+            height: 5px;
+            background: linear-gradient(90deg, var(--azul-claro), var(--azul-oscuro));
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--azul-medio);
+            font-size: clamp(1.3rem, 3.5vw, 2rem);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .objetivos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .objetivo-card {
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-royal));
+            padding: clamp(2rem, 4vw, 3.5rem);
+            border-radius: 25px;
+            color: var(--blanco);
+            box-shadow: 0 15px 50px rgba(13, 71, 161, 0.3);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objetivo-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transition: all 0.7s ease;
+        }
+
+        .objetivo-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(13, 71, 161, 0.5);
+        }
+
+        .objetivo-card:hover::before {
+            top: -100%;
+            right: -100%;
+        }
+
+        .objetivo-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 900;
+        }
+
+        .objetivo-card .icon {
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+
+        .objetivo-card p {
+            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* SECCIÓN PROPUESTAS */
+        .propuestas-section {
+            padding: clamp(4rem, 8vw, 7rem) 5%;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .propuestas-section::before {
+            content: '✈️';
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            font-size: clamp(6rem, 15vw, 10rem);
+            opacity: 0.04;
+            animation: float 8s infinite;
+        }
+
+        .propuestas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .propuesta-card {
+            background: var(--blanco);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .propuesta-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+        }
+
+        .propuesta-header {
+            background: linear-gradient(135deg, var(--azul-medio), var(--azul-claro));
+            padding: 2.5rem 2rem;
+            color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .propuesta-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .propuesta-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            opacity: 0.15;
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            line-height: 1;
+        }
+
+        .propuesta-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 900;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.8px;
+            line-height: 1.4;
+        }
+
+        .propuesta-body {
+            padding: 2rem;
+        }
+
+        .propuesta-body p {
+            color: #555;
+            line-height: 1.8;
+            font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+        }
+
+        .propuesta-icon {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+            animation: pulse 3s infinite;
+        }
+
+        /* TRACKING SECTION */
+        .tracking-section {
+            padding: clamp(4rem, 8vw, 7rem) 5%;
+            background: var(--azul-oscuro);
+            color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tracking-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(51, 181, 229, 0.2) 50%, transparent 70%);
+            animation: shine 5s infinite;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .tracking-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tracking-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 2.5rem;
+            font-weight: 900;
+        }
+
+        .tracking-content p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            line-height: 2;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--gris-oscuro);
+            color: var(--blanco);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--azul-claro);
+            font-weight: 900;
+        }
+
+        .footer p {
+            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+        }
+
+        /* SCROLL ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background: var(--azul-oscuro);
+                width: 80%;
+                height: 100vh;
+                padding: 6rem 2rem 2rem 2rem;
+                transition: right 0.4s ease;
+                box-shadow: -6px 0 20px rgba(0,0,0,0.4);
+                gap: 1.2rem;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .logo-nav h2 {
+                font-size: 0.65rem;
+            }
+
+            .intro-logo {
+                width: 70vw;
+                max-width: 280px;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 2rem 1.5rem;
+            }
+
+            .objetivos-container {
+                gap: 1.8rem;
+            }
+
+            .propuestas-grid {
+                gap: 1.8rem;
+            }
+        }
+
+        /* SCROLL INDICATOR */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2.5s infinite;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-25px); }
+            60% { transform: translateX(-50%) translateY(-15px); }
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 35px;
+            height: 50px;
+            border: 3px solid var(--blanco);
+            border-radius: 30px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: var(--blanco);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2.5s infinite;
+        }
+
+        @keyframes scroll {
+            0% { top: 12px; opacity: 1; }
+            100% { top: 35px; opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- INTRO SCREEN -->
+    <div class="intro-screen" id="introScreen">
+        <!-- VIDEO DE FONDO CON SONIDO -->
+        <div class="intro-video-container">
+            <video class="intro-video" autoplay loop playsinline muted="false" id="introVideo">
+                <source src="imagenes/videsga.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="intro-overlay"></div>
+        
+        <div class="intro-content">
+            <div class="intro-logo-container">
+                <img src="imagenes/logo-samuel.png" alt="Logo Samuel" class="intro-logo" id="introLogoImg">
+            </div>
+            
+            <h1 class="intro-title">SAMUEL JIMÉNEZ</h1>
+            <p class="intro-subtitle">Candidatura para la</p>
+            <p class="intro-position">SECRETARÍA GENERAL ACADÉMICA<br>MINUME XVII</p>
+            <p class="intro-hashtag">#MINUMETRASCIENDEFRONTERAS ✈️🩵</p>
+            
+            <button class="enter-button" onclick="enterSite()">INICIAR VIAJE</button>
+        </div>
+        
+        <button class="sound-button" id="soundButton" onclick="activateSound()">
+            🔊 ACTIVAR SONIDO
+        </button>
+        
+        <a href="#" class="skip-intro" onclick="enterSite(); return false;">Saltar introducción →</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content" id="mainContent">
+        <!-- NAVBAR -->
+        <nav class="navbar" id="navbar">
+            <div class="logo-nav">
+                <img src="imagenes/logo-samuel.png" alt="Logo" class="logo-nav-img" id="navLogoImg">
+                <h2>SAMUEL JIMÉNEZ<br><span style="font-size: 0.7em; font-weight: 600; opacity: 0.9;">Secretaría General Académica</span></h2>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#causa">Nuestra Causa</a></li>
+                <li><a href="#propuestas">Propuestas</a></li>
+                <li><a href="#tracking">Tracking</a></li>
+                <li><a href="#descargar">Descargar</a></li>
+            </ul>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="inicio">
+            <div class="candidate-image-container">
+                <img src="imagenes/samuelima.jpeg"alt="Samuel Jiménez" class="candidate-image" id="candidateImage">
+            </div>
+            
+            <div class="hero-content">
+                <img src="imagenes/logo-samuel.png" alt="Logo Samuel" class="hero-logo-main" id="heroLogoImg">
+                
+                <h1>Plan de Despegue y<br>Aterrizaje Seguro</h1>
+                <p class="subtitle">Transformando el futuro de MINUME</p>
+                <p class="candidate-name">SAMUEL JIMÉNEZ</p>
+                <p class="position-title">Candidatura para la Secretaría General Académica MINUME XVII</p>
+                <p class="hashtag">#MINUMETRASCIENDEFRONTERAS ✈️🩵</p>
+                <a href="#propuestas" class="cta-button">¡CONOCE EL PLAN!</a>
+            </div>
+            <div class="scroll-indicator">
+                <span></span>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CAUSA -->
+        <section class="causa-section" id="causa">
+            <h2 class="section-title fade-in">¿CUÁL ES NUESTRA CAUSA? ✈️</h2>
+            <h3 class="section-subtitle fade-in">UN DESTINO CON DOS OBJETIVOS</h3>
+            
+            <div class="objetivos-container">
+                <div class="objetivo-card fade-in">
+                    <h3><span class="icon">🎯</span> OBJETIVO 1</h3>
+                    <p>MÁXIMO DESARROLLO DE COMPETENCIAS EDUCATIVAS EN LOS DELEGADOS</p>
+                </div>
+                <div class="objetivo-card fade-in">
+                    <h3><span class="icon">🚀</span> OBJETIVO 2</h3>
+                    <p>PREPARAR LAS BASES PARA SU DESARROLLO PROFESIONAL Y LABORAL</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PROPUESTAS -->
+        <section class="propuestas-section" id="propuestas">
+            <h2 class="section-title fade-in">¿QUÉ HAREMOS? 🩵</h2>
+            
+            <div class="propuestas-grid">
+                <div class="propuesta-card fade-in">
+                    <div class="propuesta-header">
+                        <span class="propuesta-number">01</span>
+                        <div class="propuesta-icon">✈️</div>
+                        <h3>COMISIONES INNOVADORAS</h3>
+                    </div>
+                    <div class="propuesta-body">
+                        <p>+10 comisiones con enfoques y temas relevantes para el presente y futuro del delegado. Temas actuales que preparan a los delegados para los retos del mundo moderno.</p>
+                    </div>
+                </div>
+
+                <div class="propuesta-card fade-in">
+                    <div class="propuesta-header">
+                        <span class="propuesta-number">02</span>
+                        <div class="propuesta-icon">🩵</div>
+                        <h3>GESTIÓN DE LA EXCELENCIA</h3>
+                    </div>
+                    <div class="propuesta-body">
+                        <p>Impactando todos los elementos académicos del proceso a través de la Comisión Académica Especializada (CAE). Elevamos el nivel académico de cada experiencia.</p>
+                    </div>
+                </div>
+
+                <div class="propuesta-card fade-in">
+                    <div class="propuesta-header">
+                        <span class="propuesta-number">03</span>
+                        <div class="propuesta-icon">✈️</div>
+                        <h3>DESARROLLO PROFESIONAL</h3>
+                    </div>
+                    <div class="propuesta-body">
+                        <p>Llevar a la práctica lo aprendido en la comisión con la realidad laboral. Conexión directa entre el conocimiento teórico y su aplicación profesional.</p>
+                    </div>
+                </div>
+
+                <div class="propuesta-card fade-in">
+                    <div class="propuesta-header">
+                        <span class="propuesta-number">04</span>
+                        <div class="propuesta-icon">🩵</div>
+                        <h3>GESTIÓN DE LA INCLUSIÓN</h3>
+                    </div>
+                    <div class="propuesta-body">
+                        <p>Incentivar la inclusión de jóvenes con capacidades diferentes, comenzando con un plan piloto para los sordos. Un MINUME para todos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRACKING SECTION -->
+        <section class="tracking-section" id="tracking">
+            <div class="tracking-content fade-in">
+                <h2>CONOCE EL TRACKING DEL DELEGADO ✈️</h2>
+                <p>Nuestra Mesa Directiva tendrá un panorama completo de la evolución del delegado para identificar la meta académica específica por competencias que se va a producir.</p>
+                <p>Un sistema innovador que permite dar seguimiento personalizado al progreso de cada delegado, garantizando que alcancen su máximo potencial.</p>
+                <a href="#" class="cta-button" style="margin-top: 2.5rem;">¡EXPLORAR TRACKING!</a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" id="descargar">
+            <div class="footer-content">
+                <h3>DESCARGA LAS PROPUESTAS COMPLETAS 🩵</h3>
+                <p style="margin: 1.5rem 0;">Conoce a detalle nuestro plan de trabajo para MINUME XVII</p>
+                <a href="https://drive.google.com/file/d/1qDdfs87ISq0F35-7irtcvJJNpUbUiE9b/view?usp=sharing" class="cta-button" target="_blank">DESCARGAR PROPUESTAS</a>
+                
+                <div style="margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <p>&copy; 2026 Samuel Jiménez - Secretaría General Académica MINUME XVII</p>
+                    <p style="margin-top: 1.2rem; opacity: 0.7;">#MINUMETRASCIENDEFRONTERAS ✈️🩵</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ENTER SITE FUNCTION
+        function enterSite() {
+            const introScreen = document.getElementById('introScreen');
+            const mainContent = document.getElementById('mainContent');
+            const introVideo = document.getElementById('introVideo');
+            
+            if (introVideo) {
+                introVideo.pause();
+            }
+            
+            introScreen.classList.add('hidden');
+            
+            setTimeout(() => {
+                mainContent.classList.add('visible');
+            }, 500);
+        }
+
+        // ACTIVAR SONIDO DEL VIDEO
+        function activateSound() {
+            const introVideo = document.getElementById('introVideo');
+            const soundButton = document.getElementById('soundButton');
+            
+            if (introVideo) {
+                introVideo.muted = false;
+                introVideo.volume = 0.9;
+                introVideo.play();
+                
+                soundButton.classList.add('active');
+                soundButton.innerHTML = '✅ SONIDO ACTIVADO';
+                
+                setTimeout(() => {
+                    soundButton.style.opacity = '0';
+                    soundButton.style.transform = 'translateX(-50%) translateY(-40px)';
+                    setTimeout(() => {
+                        soundButton.style.display = 'none';
+                    }, 500);
+                }, 2000);
+            }
+        }
+
+        // REPRODUCIR VIDEO CON SONIDO
+        window.addEventListener('DOMContentLoaded', () => {
+            const introVideo = document.getElementById('introVideo');
+            const soundButton = document.getElementById('soundButton');
+            
+            if (introVideo) {
+                introVideo.muted = false;
+                introVideo.volume = 0.8;
+                
+                const playPromise = introVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Video reproduciéndose con sonido');
+                        if (soundButton && !introVideo.muted) {
+                            soundButton.style.opacity = '0';
+                            soundButton.style.transform = 'translateX(-50%) translateY(-40px)';
+                            setTimeout(() => {
+                                soundButton.style.display = 'none';
+                            }, 500);
+                        }
+                    }).catch(() => {
+                        console.log('Autoplay con sonido bloqueado, reproduciendo sin sonido');
+                        introVideo.muted = true;
+                        introVideo.play();
+                        if (soundButton) {
+                            soundButton.style.display = 'block';
+                        }
+                    });
+                }
+            }
+        });
+
+        // MENU TOGGLE
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // CLOSE MENU ON LINK CLICK
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // NAVBAR SCROLL EFFECT
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // SCROLL ANIMATIONS
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -60px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // LOAD IMAGES WITH FALLBACK
+        window.addEventListener('DOMContentLoaded', () => {
+            const candidateImage = document.getElementById('candidateImage');
+            const introLogoImg = document.getElementById('introLogoImg');
+            const navLogoImg = document.getElementById('navLogoImg');
+            const heroLogoImg = document.getElementById('heroLogoImg');
+            
+            [candidateImage, introLogoImg, navLogoImg, heroLogoImg].forEach(img => {
+                if (img) {
+                    img.onerror = () => {
+                        console.log('Error cargando:', img.src);
+                        if (img === candidateImage) {
+                            img.style.display = 'none';
+                        }
+                    };
+                }
+            });
+        });
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // PARALLAX EFFECT
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const heroContent = document.querySelector('.hero-content');
+                    if (heroContent && window.innerWidth > 768) {
+                        heroContent.style.transform = `translateY(${scrolled * 0.25}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
